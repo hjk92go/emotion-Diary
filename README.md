@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Router ?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 데이터의 경로를 실시간으로 지정해주는 역할을 하는 무언가
 
-## Available Scripts
+# Route + ing ?
 
-In the project directory, you can run:
+- 경로를 정해주는 행위 자체와 그런 과정들을 다 포함하여 일컫는말
+- 어떤 네트워크 내에서 통신 데이터를 보낼 경로를 선택하는 일련의 과정
 
-### `npm start`
+# Page Routing ?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 요청에 명시되어 있는 경로에 따라서 알맞은 페이지를 선택하게 하는 이 과정 자체를 페이지 라우팅이라고 한다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# MPA(Multipage Application)
 
-### `npm test`
+- 홈이라는 경로를 가지고 도착한 요청에는 해당경로에 맞는 html파일을 보내주는 식으로 웹서버가 동작하는데 이렇게
+  여러 개의 페이지를 준비했다가 요청이 들어오면 경로에 따라 적절한 페이지를 보내주는 방식을 멀티페이지 어플리케이션 = MPA 방식이라고 부른다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# SPA(Single Page Application)
 
-### `npm run build`
+- 단일 페이지 어플리케이션이라는 뜻으로, 페이지가 한개밖에 없는 웹어플리케이션을 뜻한다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# CSR(Client Side Rendering)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 싱글페이지 어플리케이션에서 클라이언트 측에서 알아서 페이지를 렌더링 하는 방식을 클라이언트 사이드 렌드링이라고 한다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+리액트는 단일페이지로 구성되는 SPA방식을 따르면서 CSR한다.
