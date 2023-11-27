@@ -6,13 +6,13 @@ import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
-import RouterTest from "./components/RouterTest";
 
 function App() {
   return (
     //02
+    //process.env.PUBLIC_URL : 어떤 위치에 있든 /public 디렉토리를 가리키게 됨(public디렉토리에 대한 경로를 바로 쓸수있는 명령어라고 생각하면됨)
     <BrowserRouter>
-      <div>
+      <div className="App">
         <h2>App.js</h2>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -20,7 +20,6 @@ function App() {
           <Route path="/edit" element={<Edit />} />
           <Route path="/diary/:id" element={<Diary />} />
         </Routes>
-        <RouterTest />
       </div>
     </BrowserRouter>
   );
