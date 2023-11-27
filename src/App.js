@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
           <Route path="/edit" element={<Edit />} />
-          <Route path="/diary" element={<Diary />} />
+          <Route path="/diary/:id" element={<Diary />} />
         </Routes>
         <RouterTest />
       </div>
@@ -32,3 +32,6 @@ export default App;
 
 //a태그를 사용할시 새로고침이 되므로, SPA 장점을 누리지 못한다.
 //a태그는 외부url 사용시 이용  / SPA에서 링크 태그를 활용해준다(CSR방식)
+
+//path variable을 사용하기위해 path 속성처리를 해야함 -> /diary/:id
+//세미콜론을 사용하여 아이디라는 이름으로 뒤에 있는 값을 전달하겠다고 먼저 선언을 해준다.

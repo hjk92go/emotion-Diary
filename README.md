@@ -25,3 +25,12 @@
 - 싱글페이지 어플리케이션에서 클라이언트 측에서 알아서 페이지를 렌더링 하는 방식을 클라이언트 사이드 렌드링이라고 한다.
 
 리액트는 단일페이지로 구성되는 SPA방식을 따르면서 CSR한다.
+
+# React Router Dom의 유용한 기능
+
+- React Router V6 : React에서 CSR기반의 페이지 라우팅을 할 수 있게 해주는 라이브러리
+  - 1. Path Variable(useParams)
+  - 2. Query String(useSearchParams)
+    - Query : 웹페이지에 데이터를 전달하는 가장 간단한 방법
+      - ex) /edit?id=10&mode=dark =>(?id=10&mode=dark부분을 Query String이라고 함)
+  - 3. Page Moving(useNavigate)
