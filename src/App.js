@@ -7,13 +7,24 @@ import Edit from "./pages/Edit";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
 
+//COMPONENTS
+import MyButton from "./components/MyButton";
+import MyHeader from "./components/MyHeader";
+
 function App() {
   return (
     //02
     //process.env.PUBLIC_URL : 어떤 위치에 있든 /public 디렉토리를 가리키게 됨(public디렉토리에 대한 경로를 바로 쓸수있는 명령어라고 생각하면됨)
     <BrowserRouter>
       <div className="App">
+        <MyHeader
+          headText={"App"}
+          leftChild={<MyButton text={"왼쪽버튼"} onClick={() => alert("왼쪽클릭")} />}
+        />
         <h2>App.js</h2>
+        <MyButton text={"BTN"} onClick={() => alert("btn click!")} type={"positive"} />
+        <MyButton text={"BTN"} onClick={() => alert("btn click!")} type={"negative"} />
+        <MyButton text={"BTN"} onClick={() => alert("btn click!")} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
