@@ -20,6 +20,7 @@ function App() {
         <MyHeader
           headText={"App"}
           leftChild={<MyButton text={"왼쪽버튼"} onClick={() => alert("왼쪽클릭")} />}
+          rightChild={<MyButton text={"오른쪽버튼"} onClick={() => alert("오른쪽클릭")} />}
         />
         <h2>App.js</h2>
         <MyButton text={"BTN"} onClick={() => alert("btn click!")} type={"positive"} />
