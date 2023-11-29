@@ -54,7 +54,7 @@ const DiaryList = ({ diaryList }) => {
   );
 };
 
-//정상적으로 프롭안될상황을 대비해서 디폴트 값 지정
+//정상적으로 프롭안될상황을 대비해서 디폴트 값 지정ㄹㄹ
 DiaryList.defaultProps = {
   diaryList: [],
 };
