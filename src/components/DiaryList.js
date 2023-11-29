@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -28,10 +28,26 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 const DiaryList = ({ diaryList }) => {
   const [sortType, setSortType] = useState("lastest");
 
+  const getProcessedDiaryList = () => {
+    const compare = (a, b) => {
+      if (sortType === "lastest") {
+        return parseInt(b.date) - parseInt(a.date);
+      } else {
+        return parseInt(a.date) - parseInt(b.date);
+      }
+    };
+
+    //sort를 사용하면 배열을 직접적으로 만지기 때문에 복제해서 사용해야한다
+    //JSON.stringify해주면 배열을 json화 시켜서 문자열로 바꾸고, 바꾼 문자열을 JSON.parse하면 배열을 복호화 시켜준다
+    const copyList = JSON.parse(JSON.stringify(diaryList));
+    const sortedList = copyList.sort(compare);
+
+    return sortedList;
+  };
   return (
     <div>
       <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
-      {diaryList.map((it) => (
+      {getProcessedDiaryList().map((it) => (
         <div key={it.id}>{it.content}</div>
       ))}
     </div>
