@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 import MyButton from "./MyButton";
 import MyHeader from ".//MyHeader";
 import EmotionItem from "./EmotionItem";
+import { DiaryDispatchContext } from "../App";
 
 const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
@@ -41,6 +42,8 @@ const getStringDate = (date) => {
 };
 
 const DiaryEditor = () => {
+  const contentRef = useRef();
+  const [content, setContent] = useState("");
   const [emotion, setEmotion] = useState(3);
   const [date, setDate] = useState(getStringDate(new Date()));
 
@@ -48,7 +51,23 @@ const DiaryEditor = () => {
     setEmotion(emotion);
   };
 
+  //context api
+  const { onCreate } = useContext(DiaryDispatchContext);
   const navigate = useNavigate();
+
+  //길이값 검사
+  const handleSubmit = () => {
+    if (content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
+
+    //state의 일기 데이터 추가
+    onCreate(date, content, emotion);
+    //완료시 home,
+    //작성페이지를 뒤로가기로 접근못하게 막을것 => (replace:true)옵션을 준다
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className="DiaryEditor">
@@ -72,8 +91,30 @@ const DiaryEditor = () => {
           <h4>오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
             {emotionList.map((it) => (
-              <EmotionItem key={it.emotion_id} {...it} onClick={handleClickEmotion} />
+              <EmotionItem
+                key={it.emotion_id}
+                {...it}
+                onClick={handleClickEmotion}
+                isSelected={it.emotion_id === emotion}
+              />
             ))}
+          </div>
+        </section>
+        <section>
+          <h4>오늘의 일기</h4>
+          <div className="input_box text_wrapper">
+            <textarea
+              placeholder="오늘은 어땠나요?"
+              ref={contentRef}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+        </section>
+        <section>
+          <div className="control_box">
+            <MyButton text={"취소하기"} onClick={() => navigate(-1)} />
+            <MyButton text={"작성완료"} type={"positive"} onClick={handleSubmit} />
           </div>
         </section>
       </div>

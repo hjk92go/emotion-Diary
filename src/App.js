@@ -55,31 +55,31 @@ const dummyData = [
     id: 1,
     emotion: 1,
     content: "오늘의 일기 1번",
-    date: 1701154637162,
+    date: 1702432871205,
   },
   {
     id: 2,
     emotion: 2,
     content: "오늘의 일기 2번",
-    date: 1701154637165,
+    date: 1702432871206,
   },
   {
     id: 3,
     emotion: 3,
     content: "오늘의 일기 3번",
-    date: 1701154637170,
+    date: 1702432871207,
   },
   {
     id: 4,
     emotion: 4,
     content: "오늘의 일기 4번",
-    date: 1701154637175,
+    date: 1702432871208,
   },
   {
     id: 5,
     emotion: 5,
     content: "오늘의 일기 5번",
-    date: 1701154637180,
+    date: 1702432871209,
   },
 ];
 
@@ -123,7 +123,6 @@ function App() {
       },
     });
   };
-
   /*
    * DiaryStateContext.Provider에 전달하는 Props가 변경되면 그 아래의 컴포넌트들은 리렌더가 발생
    * 그렇기 때문에 불 필요한 리렌더가 발생하지 않도록 React.memo 등을 이용해 컴포넌트들을 메모이제이션해야함
