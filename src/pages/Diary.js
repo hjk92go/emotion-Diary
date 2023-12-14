@@ -7,7 +7,6 @@ const Diary = () => {
   //앞에서 선언한 path variable을 다이어리 컴포넌트에서 id로 꺼내와야한다.
 
   const { id } = useParams();
-  console.log("id", id);
 
   return (
     <div>

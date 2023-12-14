@@ -14,24 +14,14 @@ const reducer = (state, action) => {
     case "INIT": {
       return action.data;
     }
-    //newItem은 spread연산자로 action.data를 뿌림
     case "CREATE": {
-      const newItem = {
-        ...action.data,
-      };
-
-      // newState = [newItem, ...state]; 아래와 같이 작성해줘도 무방
       newState = [action.data, ...state];
-
-      //default까지 자동 수행 / return을 하지 않을거면 break를 걸어줘야함
       break;
     }
-    //state.filter에 직접 id가 action.targetId로 전달안된것만 필터하고 브레이크
     case "REMOVE": {
       newState = state.filter((it) => it.id !== action.targetId);
       break;
     }
-    //it.id가 action.data.id와 일치하는 경우
     case "EDIT": {
       newState = state.map((it) => (it.id === action.data.id ? { ...action.data } : it));
       break;
@@ -39,6 +29,8 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
@@ -105,10 +97,7 @@ function App() {
   };
   // REMOVE
   const onRemove = (targetId) => {
-    dispatch({
-      type: "REMOVE",
-      targetId,
-    });
+    dispatch({ type: "REMOVE", targetId });
   };
 
   // EDIT
@@ -123,6 +112,7 @@ function App() {
       },
     });
   };
+
   /*
    * DiaryStateContext.Provider에 전달하는 Props가 변경되면 그 아래의 컴포넌트들은 리렌더가 발생
    * 그렇기 때문에 불 필요한 리렌더가 발생하지 않도록 React.memo 등을 이용해 컴포넌트들을 메모이제이션해야함
@@ -136,13 +126,19 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={(onCreate, onEdit, onRemove)}>
+      <DiaryDispatchContext.Provider
+        value={{
+          onCreate,
+          onEdit,
+          onRemove,
+        }}
+      >
         <BrowserRouter>
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
             </Routes>
           </div>

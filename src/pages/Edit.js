@@ -1,45 +1,34 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { DiaryStateContext } from "../App";
+import DiaryEditor from "../components/DiaryEditor";
 
 const Edit = () => {
-  //useNavigate라는 Hook은 페이지를 이동시킬 수 있는 기능을 하는 함수를 반환해주는데
-  //그함수의 이름을 Navigate로 받아준다음 Navigate의 인자로 이렇게 경로를 작성을 해주면 이 Navigate함수를 호출해서 경로를 옮겨줄 수 있다.
-  //보통 로그인값을 검사해서 로긴이 되지않았다면 로긴페이지로 강제로 보내기 이런 기능을 위해 존재
-  //즉, 링크 태그를 클릭 안했을 떄도 의도적으로 페이지를 바꿔버릴수 있다고 생각하면 된다.
+  const [originData, setOriginData] = useState();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  //Query String 꺼내서 사용하는 방법
+  const diaryList = useContext(DiaryStateContext);
 
-  //대괄호 비구조 할당 / useState사용하듯이 첫번째요소는 searchParams, 두번쨰는 setSearchParams로 받아준다.
-  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `감정 일기장 - ${id}번 일기 수정`;
+  }, []);
 
-  //여기서 id를 꺼내야함
-  const id = searchParams.get("id");
-  const mode = searchParams.get("mode");
+  useEffect(() => {
+    if (diaryList.length >= 1) {
+      const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id));
 
-  console.log("id : ", id);
-  console.log("mode : ", mode);
+      if (targetDiary) {
+        setOriginData(targetDiary);
+      } else {
+        alert("없는 일기입니다.");
+        navigate("/", { replace: true });
+      }
+    }
+  }, [id, diaryList]);
 
-  return (
-    <div>
-      <h2>Edit</h2>
-      <p>수정페이지</p>
-      <button onClick={() => setSearchParams({ who: "hjk" })}>QS바꾸기</button>
-      <button
-        onClick={() => {
-          navigate("/home");
-        }}
-      >
-        Home
-      </button>
-      <button
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        뒤로가기
-      </button>
-    </div>
-  );
+  return <div>{originData && <DiaryEditor isEdit={true} originData={originData} />}</div>;
 };
 
 export default Edit;
