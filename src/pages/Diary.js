@@ -12,20 +12,23 @@ const Diary = () => {
   const { id } = useParams();
   const diaryList = useContext(DiaryStateContext);
   const navigate = useNavigate();
-
-  //id와 일치 하는 상세 페이지에서 보여줘야하는 데이터를 찾아서 일기가 존재 할때 state에 할당
   const [data, setData] = useState();
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `감정 일기장 - ${id}번 일기`;
+  }, []);
 
   useEffect(() => {
     if (diaryList.length >= 1) {
       const targetDiary = diaryList.find((it) => parseInt(it.id) === parseInt(id));
 
       if (targetDiary) {
-        //일기가 존재할 때
+        // 일기가 존재할 때
         setData(targetDiary);
       } else {
-        //일기 존재X
-        alert("없는 일기 입니다.");
+        // 일기가 없을 때
+        alert("없는 일기입니다.");
         navigate("/", { replace: true });
       }
     }
